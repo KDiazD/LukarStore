@@ -34,9 +34,9 @@ app.use((req,res,next)=>{
 //rutas
 
 app.use('/productos', require('./routes/productos'));
-
+ 
 //public
-app.unsubscribe(express.static(path.join(__dirname,'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // inicia servidor
