@@ -1,0 +1,85 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <br><br><br><br>
+                <div class="card" style="text-align: center;">
+                    <br>
+                    <br>
+                    <br>
+                    <img src="/assets/img/icon/login.png"
+                        style="width: 100px; height: 100px; margin:auto; display:block;" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <form action="/usuarios/login" method="post">
+                            <div class="form-group">
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="background-color: #0063D1; color:white"><i
+                                                class="fas fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" name="users"
+                                        placeholder="Ingrese su usuario">
+                                </div>
+                                <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"
+                                            style="background-color:  #0063D1; color:white"><i
+                                                class="fas fa-key"></i></span>
+                                    </div>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="Ingrese su contraseña">
+                                </div>
+                                <button type="submit" class="btn btn-block"
+                                    style="background: #0063D1; color: white; font-weight:bold">Entrar
+                                </button>
+                        </form>
+                    </div>
+                    <!-- Acción Modal -->
+                    <a href="/usuarios/registrar" style="width:360px; color: white;" tabindex="-1" role="button"
+                        aria-disabled="true" data-target="#exampleModal" data-toggle="modal">¿No tienes una cuenta?
+                        ¡Regístrate!</a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="exampleModalLabel">Registro</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="/assets/img/icon/agregar-usuario.png"style="width: 100px; height: 100px; margin:auto; display:block;" class="card-img-top" alt="...">
+                                    
+                                    <form action="/usuarios/add" method="post">
+                                        <div class="form-group">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="nombre_usuario" id=""
+                                                placeholder="Nombre">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="user" id=""
+                                                placeholder="Nombre de usuario">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="pass" id=""
+                                                placeholder="Contraseña">
+                                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success">Registrar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>

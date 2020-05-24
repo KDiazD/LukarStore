@@ -34,6 +34,8 @@ app.use((req,res,next)=>{
 //rutas
 
 app.use('/productos', require('./routes/productos'));
+//app.use('/administrador', require('./routes/administrador'));
+app.use('/usuarios', require('./routes/usuarios'));
  
 //public
 app.use(express.static(path.join(__dirname, 'public')));
