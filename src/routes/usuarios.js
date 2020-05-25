@@ -8,4 +8,9 @@ router.get('/login', async(req,res)=>{
 
 });
 
+/*Perfil*/
+router.get('/perfil', async(req,res)=>{
+    res.render('links/perfil');
+});
+
 module.exports = router;
