@@ -1,0 +1,377 @@
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <h2 style="color: white">Productos</h2>
+
+                <!-- Navbar links -->
+                <ul class="navbar-nav align-items-center  ml-md-auto ">
+                    <li class="nav-item d-xl-none">
+                        <!-- Sidenav toggler -->
+                        <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                            data-target="#sidenav-main">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-sm-none">
+                        <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                            <i class="ni ni-zoom-split-in"></i>
+                        </a>
+                    </li>
+
+                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <div class="media-body  ml-2  d-none d-lg-block">
+                                        <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu  dropdown-menu-right ">
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Bienvenido!</h6>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="#!" class="dropdown-item">
+                                    <i class="ni ni-user-run"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="header bg-primary pb-6">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-center py-4">
+
+                    <div class="media-body  ml-2  d-none d-lg-block ">
+                        <a href="#" data-toggle="modal" data-target="#modificarModal"
+                            class="btn btn-success float-right"><i class="ni ni-fat-add text-white"></i>Agregar
+                            Producto</a>
+                        <!-- Modal agregar usuarios-->
+                        <div class="modal fade" id="modificarModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <form action="/admin/productos/agregar" method="post">
+                                        <div class="modal-body">
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="nombre">Nombre</label>
+                                                    <input type="text" class="form-control" name="nombre_usuario"
+                                                        id="nombre" value="">
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="nombre">Marca</label>
+                                                    <input type="text" class="form-control" name="marca" id="marca"
+                                                        value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                    <label for="nombre">Precio</label>
+                                                    <input type="number" class="form-control" name="precio" id="precio"
+                                                        value="">
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="number">Cantidad</label>
+                                                    <input type="number" class="form-control" name="cantidad"
+                                                        id="cantidad" value="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nombre">Descripción</label>
+                                                <textarea class="form-control" name="pass" id="pass"
+                                                    value=""></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputState">Categorías</label>
+                                                <select id="id_categoria" class="form-control">
+                                                    {{#each categorias}}
+                                                    <option value="{{id_cat}}" >
+                                                        {{categoria}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger"
+                                                data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-success">Añadir</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+        <!-- Dark table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow text-light" style="background-color: #156F6F;">
+                    <div class="card-header bg-transparent border-0">
+                        <h3 class="text-white mb-0">Lista de productos</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-light table-flush" id="LukarStoreDataTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="sort" data-sort="id">id</th>
+                                    <th scope="col" class="sort" data-sort="nombre">Nombre</th>
+                                    <th scope="col" class="sort" data-sort="email">Marca</th>
+                                    <th scope="col" class="sort" data-sort="rol">Precio</th>
+                                    <th scope="col" class="sort" data-sort="rol">estado</th>
+                                    <th scope="col" class="sort" data-sort="accion">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each productos}}
+                                <tr>
+                                    <th>{{id_productos}} </th>
+                                    <td class="budget">{{nombre}}</td>
+                                    <td> {{marca}}</td>
+                                    <td>{{precio}} </td>
+                                    <td>{{estado}}</td>
+                                    <td>
+
+                                        <a href="#" data-toggle="modal" data-target="#modificarModal{{id_productos}}"
+                                            class="btn btn-success">Modificar</a>
+
+                                        <!--Modal update-->
+                                        <div class="modal fade" id="modificarModal{{id_productos}}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Editar Productos
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <form action="/admin/productos/editar/{{id_productos}}"
+                                                        method="post">
+                                                        <div class="modal-body">
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="nombre">Nombre</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="nombre_usuario" id="nombre"
+                                                                        value="{{nombre}}">
+                                                                </div>
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="nombre">Marca</label>
+                                                                    <input type="text" class="form-control" name="marca"
+                                                                        id="marca" value="{{marca}}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="nombre">Precio</label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="precio" id="precio" value="{{precio}}">
+                                                                </div>
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="number">Cantidad</label>
+                                                                    <input type="number" class="form-control"
+                                                                        name="cantidad" id="cantidad"
+                                                                        value="{{cantidad}}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="nombre">Descripción</label>
+                                                                <textarea class="form-control" name="descripcion"
+                                                                    id="descripcion" value="">{{descripcion}}</textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="id_categorias">Categorías</label>
+                                                                    <select id="id_categorias" readonly
+                                                                        class="form-control">
+                                                                        {{#each ../categorias}}
+                                                                        <option value="{{id_cat}}"
+                                                                            {{isSelected ../id_categorias id_cat}}>
+                                                                            {{categoria}}
+                                                                        </option>
+                                                                        {{/each}}
+
+                                                                    </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-success">Editar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal{{id}}"
+                                            class="btn btn-info">Info</a>
+                                        <!--Modal info-->
+                                        <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Información de
+                                                            usuario</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <form action="/admin/productos/editar/{{id_productos}}"
+                                                        method="post">
+                                                        <div class="modal-body">
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="nombre">Nombre</label>
+                                                                    <input type="text" readonly class="form-control"
+                                                                        name="nombre_usuario" id="nombre"
+                                                                        value="{{nombre}}">
+                                                                </div>
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="nombre">Marca</label>
+                                                                    <input type="text" readonly class="form-control"
+                                                                        name="marca" id="marca" value="{{marca}}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="nombre">Precio</label>
+                                                                    <input type="number" readonly class="form-control"
+                                                                        name="precio" id="precio" value="{{precio}}">
+                                                                </div>
+
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="number">Cantidad</label>
+                                                                    <input type="number" readonly class="form-control"
+                                                                        name="cantidad" id="cantidad"
+                                                                        value="{{cantidad}}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="nombre">Descripción</label>
+                                                                <textarea class="form-control" readonly
+                                                                    name="descripcion" id="descripcion"
+                                                                    value="">{{descripcion}}</textarea>
+                                                            </div>
+                                                            <div class="form-row">
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="inputState">Categorías</label>
+                                                                    <select id="id_categorias" readonly
+                                                                        class="form-control">
+                                                                        {{#each ../categorias}}
+                                                                        <option value="{{id_cat}}"
+                                                                            {{isSelected ../id_categorias id_cat}}>
+                                                                            {{categoria}}
+                                                                        </option>
+                                                                        {{/each}}
+
+                                                                    </select>
+                                                                </div>
+                                                                <div class="form-group col-md-6">
+                                                                    <label for="number">Usuario</label>
+                                                                    <input type="text" readonly class="form-control"
+                                                                        name="cantidad" id="cantidad"
+                                                                        value="{{nombre_usuario}}">
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning"
+                                                                data-dismiss="modal">Aceptar</button>
+
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a href="#" data-toggle="modal" data-target="#eliminarModal{{id_productos}}"
+                                            class="btn btn-danger">Eliminar</a>
+                                        <div class="modal fade -large" id="eliminarModal{{id_productos}}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog " role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <form action="/admin/eliminar/{{id_usuario}}" method="get">
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <b><label for="nombre">¿Está seguro que desea eliminar
+                                                                        éste
+                                                                        producto?</label></b>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <b><label for="nombre">Nombre: </label></b>
+                                                                <label for="nombre">{{nombre_usuario}}</label><br>
+                                                                <b><label for="nombre">Email: </label></b>
+                                                                <label for="email">{{email}}</label><br>
+                                                                <b><label for="rol">Rol: </label></b>
+                                                                <label for="rol">{{rol}}</label><br>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-success">Eliminar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    {{/each}}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

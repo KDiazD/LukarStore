@@ -33,8 +33,15 @@ app.use((req,res,next)=>{
 });
 //rutas
 
-app.use('/productos', require('./routes/productos'));
+//Rutas Administrador
 app.use('/admin', require('./routes/admin/index'));
+app.use('/admin/categorias', require('./routes/admin/categorias'));
+app.use('/admin/productos', require('./routes/admin/productos'));
+/*app.use('/admin', require('./routes/admin/reportes'));*/
+
+
+//Rutas Usuarios generales
+app.use('/productos', require('./routes/productos'));
 app.use('/usuarios', require('./routes/usuarios'));
  
 //public
