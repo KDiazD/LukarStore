@@ -12,8 +12,14 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-right">
                                 <ul>
-                                   <li><a href="/usuarios/perfil"> Mi cuenta </a></li> 
+                                   
+                                   
+                                   {{#if user}}
+                                   <li><a href="/usuarios/perfil"> Mi cuenta </a></li>
+                                   <li><a href="/usuarios/salir">Cerrar Sesión</a></li>
+                                   {{else}}
                                    <li><a href="/usuarios/login"> login </a></li> 
+                                   {{/if}}
                                 </ul>
                             </div>   
                         </div>
@@ -113,7 +119,7 @@
                             <div class="main_menu menu_position"> 
                                 <nav>  
                                     <ul>
-                                        <li><a class="active" href="/productos/Home">Home</a></li>
+                                        <li><a class="active" href="/home/">Home</a></li>
                                     </ul>  
                                 </nav> 
                             </div>

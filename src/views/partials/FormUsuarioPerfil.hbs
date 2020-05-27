@@ -1,0 +1,28 @@
+<br>
+<div class="card border-primary mb-3 mx-auto" style="max-width: 40rem;">
+
+    <div class="card-header" style="background-color: teal;">
+        <h4 style="color: white;">Edita tus datos </h4>
+    </div>
+    <div class="card-body bg-light">
+        <form action="/usuarios/perfil" method="post">
+
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre_usuario" id="nombre"
+                    value="{{user.nombre_usuario}}">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Email</label>
+                <input type="text" class="form-control" name="email" id="nombre_usuario" value="{{user.email}}">
+            </div>
+            <div class="form-group">
+                <label for="nombre">Contraseña</label>
+                <input type="password" class="form-control" required name="pass" id="pass" value="">
+            </div>
+            <div class="card-footer form-right bg-light">
+                <button type="submit" class="btn btn-success" style="background-color: #28A745;">Añadir</button>
+            </div>
+        </form>
+    </div>
+</div>

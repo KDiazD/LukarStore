@@ -1,0 +1,162 @@
+<div class="main-content" id="panel">
+    <!-- Topnav -->
+    <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <h2 style="color: white">Solicitudes de productos</h2>
+
+                <!-- Navbar links -->
+                <ul class="navbar-nav align-items-center  ml-md-auto ">
+                    <li class="nav-item d-xl-none">
+                        <!-- Sidenav toggler -->
+                        <div class="pr-3 sidenav-toggler sidenav-toggler-dark" data-action="sidenav-pin"
+                            data-target="#sidenav-main">
+                            <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item d-sm-none">
+                        <a class="nav-link" href="#" data-action="search-show" data-target="#navbar-search-main">
+                            <i class="ni ni-zoom-split-in"></i>
+                        </a>
+                    </li>
+
+                    <ul class="navbar-nav align-items-center  ml-auto ml-md-0 ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                <div class="media align-items-center">
+                                    <div class="media-body  ml-2  d-none d-lg-block">
+                                        <span class="mb-0 text-sm  font-weight-bold">John Snow</span>
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="dropdown-menu  dropdown-menu-right ">
+                                <div class="dropdown-header noti-title">
+                                    <h6 class="text-overflow m-0">Bienvenido!</h6>
+                                </div>
+                                <div class="dropdown-divider"></div>
+                                <a href="#!" class="dropdown-item">
+                                    <i class="ni ni-user-run"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="header bg-primary pb-6">
+        <div class="container-fluid">
+            <div class="header-body">
+                <div class="row align-items-center py-4">
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--6">
+        <!-- Dark table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow text-light" style="background-color: #156F6F;">
+                    <div class="card-header bg-transparent border-0">
+                        <h3 class="text-white mb-0">Lista de solicitudes</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-light table-flush" id="LukarStoreDataTable">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" class="sort" data-sort="id">id</th>
+                                    <th scope="col" class="sort" data-sort="nombre">Nombre</th>
+                                    <th scope="col" class="sort" data-sort="email">Marca</th>
+                                    <th scope="col" class="sort" data-sort="rol">Precio</th>
+                                    <th scope="col" class="sort" data-sort="rol">estado</th>
+                                    <th scope="col" class="sort" data-sort="accion">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each productos}}
+                                <tr>
+                                    <th>{{id_productos}} </th>
+                                    <td class="budget">{{nombre}}</td>
+                                    <td> {{marca}}</td>
+                                    <td>{{precio}} </td>
+                                    <td>{{estado}}</td>
+                                    <td>
+
+                                        <a href="#" data-toggle="modal" data-target="#modificarModal{{id_productos}}"
+                                            class="btn btn-success">Estado</a>
+
+                                        <!--Modal update-->
+                                        <div class="modal fade" id="modificarModal{{id_productos}}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Editar Estado del
+                                                            producto
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <form action="/admin/solicitudes/update/{{id_productos}}"
+                                                        method="post">
+                                                        <div class="modal-body">
+
+                                                            <b><label for="nombre">Nombre: </label></b>
+                                                            <label for="nombre">{{nombre}}</label><br>
+                                                            <b><label for="nombre">Marca: </label></b>
+                                                            <label for="email">{{marca}}</label><br>
+                                                            <b><label for="rol">Precio: </label></b>
+                                                            <label for="rol">{{precio}}</label><br>
+                                                            <b><label for="rol">Cantidad: </label></b>
+                                                            <label for="rol">{{cantidad}}</label><br>
+                                                            <b><label for="rol">Descripción: </label></b>
+                                                            <label for="rol">{{descripcion}}</label><br>
+                                                            <b><label for="rol">Categoría: </label></b>
+                                                            <label for="rol">{{categoria}}</label><br>
+
+                                                            <div class="form-group">
+                                                                <label for="id_estado">Estado</label>
+                                                                <select id="id_estado" name="id_categorias"
+                                                                    class="form-control">
+                                                                    {{#each ../ConsultaEstado}}
+                                                                    <option value="{{id_estado}}"
+                                                                        {{isSelected ../id_estado id_estado}}>
+                                                                        {{estado}}
+                                                                    </option>
+                                                                    {{/each}}
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">Cancelar</button>
+                                                            <button type="submit"
+                                                                class="btn btn-success">Editar</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    {{/each}}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,245 @@
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col">
+            <div class=" text-light" style="background-color: #156F6F;">
+                <div class="bg-transparent border-0">
+                    <br>
+                    <a href="#" data-toggle="modal" data-target="#modificarModal"
+                        class="btn btn-success float-right">Agregar
+                        Producto</a>
+                    <!-- Modal agregar usuarios-->
+                    <div class="modal" id="modificarModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+
+                                </div>
+
+                                <form action="/usuarios/agregar" method="post" enctype="multipart/form-data">
+                                    <div class="modal-body" style="color:black;">
+                                        <div class="form-row">
+                                            <div class=" col-md-6">
+                                                <label for="nombre">Nombre</label>
+                                                <input type="text" class="form-control" name="nombre" id="nombre"
+                                                    value="">
+                                            </div>
+
+                                            <div class=" col-md-6">
+                                                <label for="nombre">Marca</label>
+                                                <input type="text" class="form-control" name="marca" id="marca"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="nombre">Precio</label>
+                                                <input type="number" class="form-control" name="precio" id="precio"
+                                                    value="">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="number">Cantidad</label>
+                                                <input type="number" class="form-control" name="cantidad" id="cantidad"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombre">Descripción</label>
+                                            <textarea class="form-control" name="descripcion" id="descripcion"
+                                                value=""></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nombre">Imagen</label>
+                                            <input type="file" class="form-control" name="imagen">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="inputState">Categorías</label>
+                                            <select id="id_categorias" name="id_categorias" class="form-control">
+                                                {{#each categorias}}
+                                                <option value="{{id_categorias}}">
+                                                    {{categoria}}
+                                                </option>
+                                                {{/each}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-success">Añadir</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <h3 class="text-white mb-0">Lista de productos</h3>
+                </div>
+                <br>
+
+                <div class="">
+                    <table width="100%" class="table align-items-center table-light table-flush"
+                        id="LukarStoreDataTable">
+                        <thead class="thead-dark">
+                            <tr>
+
+                                <th scope="col" class="sort" data-sort="nombre">Nombre</th>
+                                <th scope="col" class="sort" data-sort="email">Marca</th>
+                                <th scope="col" class="sort" data-sort="rol">Precio</th>
+                                <th scope="col" class="sort" data-sort="rol">estado</th>
+                                <th scope="col" class="sort" data-sort="accion">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each ListaProductosUsua}}
+                            <tr>
+
+                                <td class="budget">{{nombre}}</td>
+                                <td> {{marca}}</td>
+                                <td>{{precio}} </td>
+                                <td>{{estado}}</td>
+                                <td>
+
+                                    <a href="#" data-toggle="modal" data-target="#modificarModal{{id_productos}}"
+                                        class="btn btn-success">Modificar</a>
+
+                                    <!--Modal update-->
+                                    <div class="modal fade" id="modificarModal{{id_productos}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Producto
+                                                    </h5>
+
+                                                </div>
+
+                                                <form action="/usuarios/editar/{{id_productos}}" method="post"
+                                                    enctype="multipart/form-data">
+                                                    <div class="modal-body">
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="nombre">Nombre</label>
+                                                                <input type="text" class="form-control" name="nombre"
+                                                                    id="nombre" value="{{nombre}}">
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <label for="nombre">Marca</label>
+                                                                <input type="text" class="form-control" name="marca"
+                                                                    id="marca" value="{{marca}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-row">
+                                                            <div class="form-group col-md-6">
+                                                                <label for="nombre">Precio</label>
+                                                                <input type="number" class="form-control" name="precio"
+                                                                    id="precio" value="{{precio}}">
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <label for="number">Cantidad</label>
+                                                                <input type="number" class="form-control"
+                                                                    name="cantidad" id="cantidad" value="{{cantidad}}">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="nombre">Descripción</label>
+                                                            <textarea class="form-control" name="descripcion"
+                                                                id="descripcion" value="">{{descripcion}}</textarea>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="id_categorias">Categorías</label>
+                                                            <select id="id_categorias" name="id_categorias"
+                                                                class="form-control">
+                                                                {{#each ../categorias}}
+                                                                <option value="{{id_categorias}}"
+                                                                    {{isSelected ../id_categorias id_categorias}}>
+                                                                    {{categoria}}
+                                                                </option>
+                                                                {{/each}}
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-success">Editar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <a href="#" data-toggle="modal" data-target="#eliminarModal{{id_productos}}"
+                                        class="btn btn-danger">Eliminar</a>
+                                    <div class="modal fade -large" id="eliminarModal{{id_productos}}" tabindex="-1"
+                                        role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog " role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+
+                                                <form action="/admin/productos/eliminar/{{id_productos}}" method="get">
+                                                    <div class="modal-body">
+                                                        <div class="form-group">
+                                                            <b><label for="nombre">¿Está seguro
+                                                                    que desea eliminar
+                                                                    éste
+                                                                    producto?</label></b>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <b><label for="nombre">Nombre:
+                                                                </label></b>
+                                                            <label for="nombre">{{nombre}}</label><br>
+                                                            <b><label for="nombre">Marca:
+                                                                </label></b>
+                                                            <label for="email">{{marca}}</label><br>
+                                                            <b><label for="rol">Precio:
+                                                                </label></b>
+                                                            <label for="rol">{{precio}}</label><br>
+                                                            <b><label for="rol">Cantidad:
+                                                                </label></b>
+                                                            <label for="rol">{{cantidad}}</label><br>
+                                                            <b><label for="rol">Descripción:
+                                                                </label></b>
+                                                            <label for="rol">{{descripcion}}</label><br>
+                                                            <b><label for="rol">Categoría:
+                                                                </label></b>
+                                                            <label for="rol">{{categoria}}</label><br>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-success"
+                                                            data-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                {{/each}}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</section>

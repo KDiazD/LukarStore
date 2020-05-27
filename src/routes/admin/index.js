@@ -2,12 +2,17 @@ const express = require ('express');
 const router = express.Router();
 const pool = require('../../database');
 
-/*router.get('/', (req,res)=>{
-    res.render('links/admin/home', {layout: "main_admin"});
-});*/
+/*Método para traer datos de ventas*/
 
-router.get('/',(req,res)=>{
-    res.render('links/admin/home',{layout: "main_admin"});
+router.get('/',async(req,res)=>{
+    const CountProductos= await pool.query(`SELECT COUNT(*) AS productos
+    FROM productos`);
+    const CountUsuarios = await pool.query(`SELECT COUNT(*) AS usuarios
+    FROM usuarios`);
+    const SumVentas = await pool.query(`SELECT SUM(produc.precio * pp.cantidad) AS ventas
+    FROM productos produc, productos_pedidos pp, pedidos pe
+    WHERE pp.id_pedidos = pe.id_pedidos AND produc.id_productos = pp.id_productos`);
+    res.render('links/admin/home',{layout: "main_admin", CountProductos: CountProductos, CountUsuarios: CountUsuarios, SumVentas: SumVentas});
 });
 
 /*Método listar usuarios*/ 

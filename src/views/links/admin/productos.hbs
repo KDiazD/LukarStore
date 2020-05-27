@@ -70,13 +70,13 @@
                                         </button>
                                     </div>
 
-                                    <form action="/admin/productos/agregar" method="post">
+                                    <form action="/admin/productos/agregar" method="post" enctype="multipart/form-data">
                                         <div class="modal-body">
                                             <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="nombre">Nombre</label>
-                                                    <input type="text" class="form-control" name="nombre_usuario"
-                                                        id="nombre" value="">
+                                                    <input type="text" class="form-control" name="nombre" id="nombre"
+                                                        value="">
                                                 </div>
 
                                                 <div class="form-group col-md-6">
@@ -100,14 +100,18 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="nombre">Descripción</label>
-                                                <textarea class="form-control" name="pass" id="pass"
+                                                <textarea class="form-control" name="descripcion" id="descripcion"
                                                     value=""></textarea>
                                             </div>
                                             <div class="form-group">
+                                                <label for="nombre">Imagen</label>
+                                                <input type="file" class="form-control" name="imagen">
+                                            </div>
+                                            <div class="form-group">
                                                 <label for="inputState">Categorías</label>
-                                                <select id="id_categoria" class="form-control">
+                                                <select id="id_categorias" name="id_categorias" class="form-control">
                                                     {{#each categorias}}
-                                                    <option value="{{id_cat}}" >
+                                                    <option value="{{id_categorias}}">
                                                         {{categoria}}
                                                     </option>
                                                     {{/each}}
@@ -183,8 +187,7 @@
                                                                 <div class="form-group col-md-6">
                                                                     <label for="nombre">Nombre</label>
                                                                     <input type="text" class="form-control"
-                                                                        name="nombre_usuario" id="nombre"
-                                                                        value="{{nombre}}">
+                                                                        name="nombre" id="nombre" value="{{nombre}}">
                                                                 </div>
 
                                                                 <div class="form-group col-md-6">
@@ -214,16 +217,16 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="id_categorias">Categorías</label>
-                                                                    <select id="id_categorias" readonly
-                                                                        class="form-control">
-                                                                        {{#each ../categorias}}
-                                                                        <option value="{{id_cat}}"
-                                                                            {{isSelected ../id_categorias id_cat}}>
-                                                                            {{categoria}}
-                                                                        </option>
-                                                                        {{/each}}
+                                                                <select id="id_categorias" name="id_categorias"
+                                                                    class="form-control">
+                                                                    {{#each ../categorias}}
+                                                                    <option value="{{id_categorias}}"
+                                                                        {{isSelected ../id_categorias id_categorias}}>
+                                                                        {{categoria}}
+                                                                    </option>
+                                                                    {{/each}}
 
-                                                                    </select>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
@@ -236,11 +239,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <a href="#" data-toggle="modal" data-target="#exampleModal{{id}}"
+                                        <a href="#" data-toggle="modal" data-target="#exampleModal{{id_productos}}"
                                             class="btn btn-info">Info</a>
                                         <!--Modal info-->
-                                        <div class="modal fade" id="exampleModal{{id}}" tabindex="-1" role="dialog"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="exampleModal{{id_productos}}" tabindex="-1"
+                                            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -252,8 +255,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <form action="/admin/productos/editar/{{id_productos}}"
-                                                        method="post">
+                                                    <form action="#" method="post">
                                                         <div class="modal-body">
                                                             <div class="form-row">
                                                                 <div class="form-group col-md-6">
@@ -295,8 +297,8 @@
                                                                     <select id="id_categorias" readonly
                                                                         class="form-control">
                                                                         {{#each ../categorias}}
-                                                                        <option value="{{id_cat}}"
-                                                                            {{isSelected ../id_categorias id_cat}}>
+                                                                        <option value="{{id_categorias}}"
+                                                                            {{isSelected ../id_categorias id_categorias}}>
                                                                             {{categoria}}
                                                                         </option>
                                                                         {{/each}}
@@ -337,7 +339,8 @@
                                                         </button>
                                                     </div>
 
-                                                    <form action="/admin/eliminar/{{id_usuario}}" method="get">
+                                                    <form action="/admin/productos/eliminar/{{id_productos}}"
+                                                        method="get">
                                                         <div class="modal-body">
                                                             <div class="form-group">
                                                                 <b><label for="nombre">¿Está seguro que desea eliminar
@@ -346,19 +349,26 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <b><label for="nombre">Nombre: </label></b>
-                                                                <label for="nombre">{{nombre_usuario}}</label><br>
-                                                                <b><label for="nombre">Email: </label></b>
-                                                                <label for="email">{{email}}</label><br>
-                                                                <b><label for="rol">Rol: </label></b>
-                                                                <label for="rol">{{rol}}</label><br>
+                                                                <label for="nombre">{{nombre}}</label><br>
+                                                                <b><label for="nombre">Marca: </label></b>
+                                                                <label for="email">{{marca}}</label><br>
+                                                                <b><label for="rol">Precio: </label></b>
+                                                                <label for="rol">{{precio}}</label><br>
+                                                                <b><label for="rol">Cantidad: </label></b>
+                                                                <label for="rol">{{cantidad}}</label><br>
+                                                                <b><label for="rol">Descripción: </label></b>
+                                                                <label for="rol">{{descripcion}}</label><br>
+                                                                <b><label for="rol">Categoría: </label></b>
+                                                                <label for="rol">{{categoria}}</label><br>
+
                                                             </div>
                                                         </div>
 
                                                         <div class="modal-footer">
-                                                            <button type="button" class="btn btn-danger"
+                                                            <button type="button" class="btn btn-success"
                                                                 data-dismiss="modal">Cancelar</button>
                                                             <button type="submit"
-                                                                class="btn btn-success">Eliminar</button>
+                                                                class="btn btn-danger">Eliminar</button>
                                                         </div>
                                                     </form>
                                                 </div>

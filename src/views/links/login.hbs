@@ -17,8 +17,8 @@
                                         <span class="input-group-text" style="background-color: #0063D1; color:white"><i
                                                 class="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" class="form-control" name="users"
-                                        placeholder="Ingrese su usuario">
+                                    <input type="text" class="form-control" name="email"
+                                        placeholder="Ingrese su Email">
                                 </div>
                                 <div class="input-group form-group">
                                     <div class="input-group-prepend">
@@ -26,7 +26,7 @@
                                             style="background-color:  #0063D1; color:white"><i
                                                 class="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" class="form-control" name="password"
+                                    <input type="password" class="form-control" name="pass"
                                         placeholder="Ingrese su contraseña">
                                 </div>
                                 <button type="submit" class="btn btn-block"
@@ -50,7 +50,7 @@
                                 <div class="modal-body">
                                     <img src="/assets/img/icon/agregar-usuario.png"style="width: 100px; height: 100px; margin:auto; display:block;" class="card-img-top" alt="...">
                                     
-                                    <form action="/usuarios/add" method="post">
+                                    <form action="/usuarios/registrar" method="post">
                                         <div class="form-group">
                                         </div>
                                         <div class="form-group">
@@ -58,8 +58,8 @@
                                                 placeholder="Nombre">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="user" id=""
-                                                placeholder="Nombre de usuario">
+                                            <input type="text" class="form-control" name="email" id=""
+                                                placeholder="Email">
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="pass" id=""
