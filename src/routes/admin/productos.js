@@ -70,7 +70,7 @@ router.post('/editar/:id_productos', async (req, res) => {
         descripcion,
         id_categorias
     } = req.body;
-    const updateProductosUsua = {
+    const updateProductos = {
         nombre,
         marca,
         precio,
@@ -80,7 +80,7 @@ router.post('/editar/:id_productos', async (req, res) => {
         imagen: imagen.name,
     };
     imagen.mv(path.join('src/public/fotos/', imagen.name));
-    updateProductosUsua.id_usuarios = req.user.id_usuario;
+    updateProductos.id_usuarios = req.user.id_usuario;
     await pool.query('UPDATE productos set ? WHERE id_productos = ?', [updateProductos, id_productos]);
     console.log(updateProductos);
     res.redirect('back');

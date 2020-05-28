@@ -43,7 +43,7 @@ router.get('/carro_compras', async (req, res) => {
     });
 });
 
-
+/*Procesar pedido*/
 router.get('/carro/procesar', async (req, res) => {
 
 
@@ -118,8 +118,5 @@ router.get('/carro/eliminar/:id_productos', async (req, res) => {
     res.redirect('back');
 });
 
-
-
-/*Ruta para finalizaar pedido*/
 
 module.exports = router;

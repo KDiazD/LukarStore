@@ -35,6 +35,7 @@ router.post('/registrar', passport.authenticate('local.registro', {
 /*Ruta para cerrar sesión*/
 router.get('/salir', (req, res) => {
     req.logOut();
+    req.session.carro = [];
     res.redirect('/usuarios/login');
 });
 

@@ -1,5 +1,4 @@
-
-    <!-- Main content -->
+<!-- Main content -->
 
 
 <div class="main-content" id="panel">
@@ -11,7 +10,7 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Search form -->
-                
+
                 <!-- Navbar links -->
                 <ul class="navbar-nav align-items-center  ml-md-auto ">
                     <li class="nav-item d-xl-none">
@@ -69,7 +68,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <center><h5 class="card-title text-uppercase text-muted mb-0">PRODUCTOS</h5></center>
+                                        <center>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">PRODUCTOS</h5>
+                                        </center>
                                         {{#each CountProductos}}
                                         <center><span class="h2 font-weight-bold mb-0">{{productos}}</span></center>
                                         {{/each}}
@@ -80,7 +81,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -90,7 +91,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <center><h5 class="card-title text-uppercase text-muted mb-0">USUARIOS</h5></center>
+                                        <center>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">USUARIOS</h5>
+                                        </center>
                                         {{#each CountUsuarios}}
                                         <center><span class="h2 font-weight-bold mb-0">{{usuarios}}</span></center>
                                         {{/each}}
@@ -111,7 +114,9 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col">
-                                        <center><h5 class="card-title text-uppercase text-muted mb-0">Ventas Totales</h5></center>
+                                        <center>
+                                            <h5 class="card-title text-uppercase text-muted mb-0">Ventas Totales</h5>
+                                        </center>
                                         {{#each SumVentas}}
                                         <center><span class="h2 font-weight-bold mb-0">{{ventas}}</span></center>
                                         {{/each}}
@@ -132,16 +137,19 @@
     </div>
     <!-- Page content -->
     <div class="container-fluid mt--4">
+
         <div class="row">
             <div class="col-xl-8 mx-auto">
                 <div class="card bg-default">
                     <div class="card-header bg-transparent">
                         <div class="row align-items-center">
                             <div class="col">
+                                <button class="btn btn-danger float-right" onclick="generarPdf()" id="pdfDownloader"><i
+                                        class="far fa-file-pdf"></i></button>
                                 <h6 class="text-light text-uppercase ls-1 mb-1">Últimos 30 días</h6>
                                 <h5 class="h3 text-white mb-0">Ventas</h5>
                             </div>
-                          
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -156,7 +164,7 @@
         </div>
     </div>
 </div>
-
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
 <script>
     fetch("http://localhost:8000/admin/reportes/grafica")
         .then((response) => response.json())
@@ -236,7 +244,7 @@
                                     scaleLabel: {
                                         display: true,
                                         labelString: "Venta",
-                                        
+
                                     },
                                     ticks: {
                                         fontFamily: "Poppins",
@@ -255,4 +263,18 @@
         }
     }
 
+    function generarPdf() {
+        //Generate PDF
+        var newCanvas = document.querySelector('#MyChartVentasTotales');
+
+        //create image from dummy canvas
+        var newCanvasImg = newCanvas.toDataURL("image/png", 2.0);
+
+        //creates PDF from img
+        var doc = new jsPDF('landscape');
+        doc.setFontSize(20);
+        doc.text(20, 20, "Reporte de ventas ultimos 30 días");
+        doc.addImage(newCanvasImg, 'PNG', 5, 25, 280, 150, 'MyChartVentasTotales', 'NONE');
+        doc.save('Repore de Ventas.pdf');
+    }
 </script>
