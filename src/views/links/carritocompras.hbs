@@ -1,0 +1,64 @@
+<div class="shopping_cart_area mt-60">
+    <div class="container">
+        <form action="#">
+            <div class="row">
+                <div class="col-8">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product_name">Producto</th>
+                                        <th class="product-price">Precio</th>
+                                        <th class="product_quantity">Cantidad</th>
+                                        <th class="product_total">Total</th>
+                                        <th class="product_total"></th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each productos }}
+                                    <tr>
+                                        <td class="product_name"><a href="#">{{nombre}}</a></td>
+                                        <td class="product-price">$${{precio}}</td>
+                                        <td class="product_quantity"><label>Cantidad</label> <input readonly min="1"
+                                                max="100" value="{{cantidad}}" type="number"></td>
+                                        <td class="product_total">${{total}}</td>
+                                        <td class="product_total"><a class="btn btn-danger"
+                                                href="/productos/carro/eliminar/{{id_productos}}" />Eliminar</a></td>
+                                    </tr>
+                                    {{/each }}
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Sección pedidos-->
+                <div class="col-lg-4 col-md-4">
+                    <div class="coupon_code right">
+                        <h3>Pedido</h3>
+                        <div class="coupon_inner">
+                            <div class="cart_subtotal ">
+                                <p>Pedidos</p>
+                            </div>
+                            <div class="cart_subtotal">
+                                <p>Total</p>
+                                <p class="cart_amount">${{total}}</p>
+                            </div>
+                            <div class="checkout_btn">
+                                {{#if login}}
+                                <a href="/productos/carro/procesar">Finalizar</a>
+                                {{else}}
+                                <span>Inicie sesión para finalizar su compra</span>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </form>
+</div>
+</div>
+<br>

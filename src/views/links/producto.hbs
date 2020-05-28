@@ -6,116 +6,47 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="product-details-tab">
                         <div id="img-1" class="zoomWrapper single-zoom">
-                            <img id="zoom1" src="/assets/img/product/productbig5.jpg"
-                                data-zoom-image="/assets/img/product/productbig5.jpg" alt="big-1">
+                            <img id="zoom1" src="/fotos/{{DescripProductos.imagen}}"
+                                data-zoom-image="/fotos/{{DescripProductos.imagen}}" alt="big-1">
                         </div>
 
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product_d_right">
-                        <form action="#">
 
-                            <h1>Nonstick Dishwasher PFOA</h1>
 
-                            <div class="price_box">
-                                <span class="current_price">$70.00</span>
+                        <h1>{{DescripProductos.nombre}}</h1>
 
-                            </div>
-                            <div class="product_desc">
-                                <p>eget velit. Donec ac tempus ante. Fusce ultricies massa massa. Fusce aliquam, purus
-                                    eget sagittis vulputate, sapien libero hendrerit est, sed commodo augue nisi non
-                                    neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor, lorem et
-                                    placerat vestibulum, metus nisi posuere nisl, in </p>
-                            </div>
+                        <div class=" price_box">
+                            <span class="current_price">{{DescripProductos.precio}}</span>
 
-                            <div class="product_variant quantity">
+                        </div>
+                        <div class="product_desc">
+                            <p>{{DescripProductos.descripcion}}</p>
+                        </div>
+
+                        <div class="product_variant quantity">
+                            <form method="POST" action="/productos/carro/agregar">
+                                <input type="hidden" name="nombre" value="{{DescripProductos.nombre}}">
+                                <input type="hidden" name="precio" value="{{DescripProductos.precio}}">
                                 <label>Cantidad</label>
-                                <input min="1" max="100" value="1" type="number">
-                                <button class="button" type="submit">Añadir al carrito </button>
 
-                            </div>
-                            <div class="product_meta">
-                                <span>Marca</span>
-                            </div>
-                            <div  class="product_meta">
-                                <span> Vendedor </span>
-                            </div>
+                                <input min="1" max="100" value="1" name="cantidad" type="number">
+                                <input type="hidden" name="id_productos" value="{{DescripProductos.id_productos}}">
+                                <button class="btn btn-info  " type="submit">Añadir al carrito</button>
+                            </form>
 
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Descripción de los productos-->
-    <div class="product_d_info mb-60">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="product_d_inner">
-                        <div class="product_info_button">
-                            <ul class="nav" role="tablist">
-                                <li>
-                                    <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
-                                        aria-selected="false">Descripción</a>
-                                </li>
-                                <li>
-                                    <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                                        aria-selected="false">Características</a>
-                                </li>
 
-                            </ul>
                         </div>
-                        <div class="tab-content">
-                            <div class="tab-pane fade show active" id="info" role="tabpanel">
-                                <div class="product_info_content">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec
-                                        est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare
-                                        lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus
-                                        eu, suscipit id nulla.</p>
-                                    <p>Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis
-                                        fermentum turpis eros eget velit. Donec ac tempus ante. Fusce ultricies massa
-                                        massa. Fusce aliquam, purus eget sagittis vulputate, sapien libero hendrerit
-                                        est, sed commodo augue nisi non neque. Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit. Sed tempor, lorem et placerat vestibulum, metus nisi posuere
-                                        nisl, in accumsan elit odio quis mi. Cras neque metus, consequat et blandit et,
-                                        luctus a nunc. Etiam gravida vehicula tellus, in imperdiet ligula euismod eget.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="sheet" role="tabpanel">
-                                <div class="product_d_table">
-                                    <form action="#">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="first_child">Compositions</td>
-                                                    <td>Polyester</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first_child">Styles</td>
-                                                    <td>Girly</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="first_child">Properties</td>
-                                                    <td>Short Dress</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-                                <div class="product_info_content">
-                                    <p>Fashion has been creating well-designed collections since 2010. The brand offers
-                                        feminine designs delivering stylish separates and statement dresses which have
-                                        since evolved into a full ready-to-wear collection in which every item is a
-                                        vital part of a woman's wardrobe. The result? Cool, easy, chic looks with
-                                        youthful elegance and unmistakable signature style. All the beautiful pieces are
-                                        made in Italy and manufactured with the greatest attention. Now Fashion extends
-                                        to a range of accessories including shoes, hats, belts and more!</p>
-                                </div>
-                            </div>
+                        <div class="product_meta">
+
+                            <p><span>Marca: </span>{{DescripProductos.marca}}</p>
                         </div>
+                        <div class="product_meta">
+                            <p><span>Vendedor: </span>{{DescripProductos.vendedor}}</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -132,14 +63,15 @@
                 </div>
             </div>
         </div>
+
         <div class="product_carousel product_column4 owl-carousel">
+            {{#each ListadoProductosGene}}
             <article class="single_product">
+
                 <figure>
                     <div class="product_thumb">
-                        <a class="primary_img" href="/productos/listado_productos"><img src="/assets/img/product/product9.jpg"
-                                alt=""></a>
-                        <a class="secondary_img" href="/productos/listado_productos"><img
-                                src="/assets/img/product/product10.jpg" alt=""></a>
+                        <a class="primary_img" href="/productos/listado_productos/{{id_productos}}"><img
+                                src="/fotos/{{imagen}}" alt=""></a>
                         <div class="label_product">
                             <span class="label_sale">sale</span>
                         </div>
@@ -148,11 +80,13 @@
                         <div class="price_box">
                             <span class="current_price">$79.00</span>
                         </div>
-                        <h3 class="product_name"><a href="/productos/listado_productos">Natus erro at congue massa commodo
-                                sit</a></h3>
+                        <h3 class="product_name">{{nombre}}</h3>
                     </figcaption>
                 </figure>
+
             </article>
+
+            {{/each}}
         </div>
     </div>
 </section>

@@ -51,11 +51,6 @@ router.post('/agregar', async (req, res) => {
 
     await pool.query(`INSERT INTO productos set ?`, [array]);
     res.redirect('back')
-
-    /*const addProductos = req.body;
-    console.log(addProductos);
-    await pool.query(`INSERT INTO productos set ?`, [addProductos]);
-    res.redirect('back');*/
 });
 
 /*Método para editar productos*/
@@ -64,7 +59,28 @@ router.post('/editar/:id_productos', async (req, res) => {
     const {
         id_productos
     } = req.params;
-    const updateProductos = req.body;
+    const imagen = req.files.imagen
+
+    const {
+
+        nombre,
+        marca,
+        precio,
+        cantidad,
+        descripcion,
+        id_categorias
+    } = req.body;
+    const updateProductosUsua = {
+        nombre,
+        marca,
+        precio,
+        cantidad,
+        descripcion,
+        id_categorias,
+        imagen: imagen.name,
+    };
+    imagen.mv(path.join('src/public/fotos/', imagen.name));
+    updateProductosUsua.id_usuarios = req.user.id_usuario;
     await pool.query('UPDATE productos set ? WHERE id_productos = ?', [updateProductos, id_productos]);
     console.log(updateProductos);
     res.redirect('back');

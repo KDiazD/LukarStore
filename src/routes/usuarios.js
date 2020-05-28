@@ -112,7 +112,28 @@ router.post('/editar/:id_productos', async (req, res) => {
     const {
         id_productos
     } = req.params;
-    const updateProductosUsua = req.body;
+
+    const imagen = req.files.imagen
+
+    const {
+
+        nombre,
+        marca,
+        precio,
+        cantidad,
+        descripcion,
+        id_categorias
+    } = req.body;
+    const updateProductosUsua = {
+        nombre,
+        marca,
+        precio,
+        cantidad,
+        descripcion,
+        id_categorias,
+        imagen: imagen.name,
+    };
+    imagen.mv(path.join('src/public/fotos/', imagen.name));
     updateProductosUsua.id_usuarios = req.user.id_usuario;
     await pool.query('UPDATE productos set ? WHERE id_productos = ?', [updateProductosUsua, id_productos]);
     console.log(updateProductosUsua);
